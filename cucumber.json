@@ -1,7 +1,25 @@
 {
-    "default" : {
-        "require": ["src/steps/**/*.ts"],
-        "paths": ["src/features/**/*.feature"],
-        "requireModule": ["ts-node/register"]
+    "default": {
+        "require": [
+            "src/steps/**/*.ts"
+        ],
+        "paths": [
+            "src/features/**/*.feature"
+        ],
+        "requireModule": [
+            "ts-node/register"
+        ],
+        "format": [
+            [
+                "html",
+                "cucumber-report.html"
+            ],
+            "summary",
+            "progress-bar",
+            "json:./cucumber-report.json"
+        ],
+        "formatOptions": {
+            "snippetInterface": "async-await"
+        }
     }
 }
