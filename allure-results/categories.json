@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Assertion Errors",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*"
+  },
+  {
+    "name": "Flaky Tests",
+    "matchedStatuses": ["broken"],
+    "traceRegex": ".*TimeoutException.*"
+  }
+]
