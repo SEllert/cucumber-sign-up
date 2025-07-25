@@ -13,6 +13,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@cucumber/cucumber": "^12.1.0",
+    "@cucumber/messages": "^28.1.0",
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.15",
     "allure-cucumberjs": "^3.3.2",
