@@ -3,7 +3,7 @@ Feature: User petition success
   This feature covers the petition signup process for users.
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
-  @icelandic @positive 
+  @icelandic @positive @skip 
   @allure.label.suite:PetitionSignupPossitive 
   @allure.label.parentSuite:PetitionSignup
   Scenario: Successful signup on a petition page with Icelandic names
@@ -28,7 +28,7 @@ Feature: User petition success
       | Ásta Ragnhildur Guðbjörnsdóttir    |
       | Kristín Þóra Þórðardóttir          |
 
-  @english @positive @skip
+  @english @positive
   @allure.label.suite:PetitionSignupPossitive 
   @allure.label.parentSuite:PetitionSignup
   Scenario: Successful signup on a petition page with English names
