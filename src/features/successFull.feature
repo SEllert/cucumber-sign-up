@@ -4,6 +4,9 @@ Feature: User petition success
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
   @icelandic @positive
+  @allure.label.epic:WebInterface
+  @allure.label.feature:EssentialFeatures
+  @allure.label.story:Authentication
   Scenario: Successful signup on a petition page with Icelandic names
    This scenario tests that a user can sign a petition using Icelandic names.
    It verifies that the name appears correctly on the petition page after signup.
