@@ -5,3 +5,9 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+# Ignore everything in allure-results
+allure-results/*
+
+# But keep categories.json
+!allure-results/categories.json
+
