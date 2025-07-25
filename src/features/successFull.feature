@@ -43,3 +43,10 @@ Feature: User petition success
       | Al Li                                                 |
       | Anna-Marie O'Neill                                    |
       | Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr. |
+
+    Scenario: the user can use Tab and Enter keys to navigate and submit
+      Given the user is on the signup page
+      When the user enters a Full name "John Doe" into the Full name field
+      And the user presses the Tab key
+      And the user presses the Enter key
+      Then the user should see their name "John Doe" on the petition page
