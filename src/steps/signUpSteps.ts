@@ -5,7 +5,6 @@ import { SignUpPage } from '../page-objects/signup-page.pom';
 import { Console } from 'console';
 import { Sign } from 'crypto';
 
-
 let signUpPage: SignUpPage;
 
 Given('the user is on the signup page', async () => {
@@ -21,7 +20,7 @@ When('the user presses the Sign the Petition button', async () => {
     await signUpPage.signUpButtonLocator.click();
 });
 
-Then('the user should see their name "<fullName>" on the petition page', async (fullName: string) => {
+Then('the user should see their name {string} on the petition page', async (fullName: string) => {
     const html = await page.content();
     expect(html).toContain(fullName);
 });
