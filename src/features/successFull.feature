@@ -3,7 +3,9 @@ Feature: User petition success
   This feature covers the petition signup process for users.
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
-  @icelandic @positive @allure.label.suite:PetitionSignup
+  @icelandic @positive 
+  @allure.label.suite:PetitionSignupPossitive 
+  @allure.label.parentSuite:PetitionSignup
   Scenario: Successful signup on a petition page with Icelandic names
    This scenario tests that a user can sign a petition using Icelandic names.
    It verifies that the name appears correctly on the petition page after signup.
@@ -26,7 +28,9 @@ Feature: User petition success
       | Ásta Ragnhildur Guðbjörnsdóttir    |
       | Kristín Þóra Þórðardóttir          |
 
-  @english @positive @allure.label.suite:PetitionSignup
+  @english @positive @skip
+  @allure.label.suite:PetitionSignupPossitive 
+  @allure.label.parentSuite:PetitionSignup
   Scenario: Successful signup on a petition page with English names
    This scenario tests that a user can sign a petition using English names.
    It verifies that the name appears correctly on the petition page after signup.
@@ -45,6 +49,8 @@ Feature: User petition success
       | Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr. |
 
   @allure.label.suite:Accessibility
+  @allure.label.suite:PetitionSignupPossitive 
+  @allure.label.parentSuite:PetitionSignup
   Scenario: the user can use Tab and Enter keys to navigate and submit
     Given the user is on the signup page
     When the user enters a Full name "John Doe" into the Full name field

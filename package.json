@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "test:watch": "cucumber-js --watch"
+    "test:watch": "cucumber-js --watch",
+    "allure:serve": "allure serve allure-results"
   },
   "keywords": [],
   "author": "",

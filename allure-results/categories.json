@@ -8,5 +8,30 @@
     "name": "Flaky Tests",
     "matchedStatuses": ["broken"],
     "traceRegex": ".*TimeoutException.*"
+  },
+  {
+    "name": "Passed Tests",
+    "matchedStatuses": ["passed"],
+    "messageRegex": ".*"
+  },
+  {
+    "name": "Skipped Tests",
+    "matchedStatuses": ["skipped"],
+    "messageRegex": ".*"
+  },
+  {
+    "name": "Critical Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*CriticalError.*"
+  },
+  {
+    "name": "Performance Issues",
+    "matchedStatuses": ["failed"],
+    "traceRegex": ".*PerformanceException.*"
+  },
+  {
+    "name": "Configuration Errors",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*ConfigurationError.*"
   }
 ]
