@@ -1,6 +1,14 @@
 # Cucumber Sign-Up Test Automation
 
-A test automation framework for petition sign-up functionality using **Cucumber.js**, **Playwright**, and **Allure** reporting.
+This project explores Cucumber-style testing and reporting techniques in various ways. A simple signup page has been created with Bolt, serving as the foundation for comprehensive test automation coverage.
+
+**Project Goals:**
+- Achieve comprehensive test coverage with clear visibility into coverage metrics
+- Quickly identify coverage gaps and testing blind spots  
+- Provide clear root cause analysis for test failures through detailed reporting
+- Demonstrate BDD best practices with Cucumber.js
+
+A robust test automation framework for petition sign-up functionality using **Cucumber.js**, **Playwright**, and **Allure** reporting.
 
 ## 🚀 Features
 
