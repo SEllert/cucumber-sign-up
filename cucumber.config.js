@@ -2,7 +2,10 @@ const os = require('os');
 
 module.exports = {
     default: {
-        require: ["src/steps/**/*.ts"],
+        require: [
+            "src/support/**/*.ts",    // Load world and support files first
+            "src/steps/**/*.ts"       // Then load step definitions
+        ],
         paths: ["src/features/**/*.feature"],
         requireModule: ["ts-node/register"],
         format: ["allure-cucumberjs/reporter"],

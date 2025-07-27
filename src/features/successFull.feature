@@ -6,13 +6,13 @@ Feature: User petition success
   @icelandic @positive @skip 
   @allure.label.suite:PetitionSignupPossitive
   @allure.label.parentSuite:PetitionSignup
-  Scenario: Successful signup on a petition page with Icelandic names
+  Scenario: Petition accepts Icelandic names with special characters
    This scenario tests that a user can sign a petition using Icelandic names.
    It verifies that the name appears correctly on the petition page after signup.
 
     Given the user is on the signup page
-    When the user enters a Full name "<fullName>" into the Full name field
-    When the user presses the Sign the Petition button
+    When the user provides their full name "<fullName>"
+    And the user presses the Sign the Petition button
     Then the user should see their name "<fullName>" on the petition page
 
     Examples:
@@ -31,13 +31,13 @@ Feature: User petition success
   @english @positive
   @allure.label.suite:PetitionSignupPossitive 
   @allure.label.parentSuite:PetitionSignup
-  Scenario: Successful signup on a petition page with English names
+  Scenario: Petition accepts English
    This scenario tests that a user can sign a petition using English names.
    It verifies that the name appears correctly on the petition page after signup.
 
     Given the user is on the signup page
-    When the user enters a Full name "<fullName>" into the Full name field
-    When the user presses the Sign the Petition button
+    When the user provides their full name "<fullName>"
+    And the user presses the Sign the Petition button
     Then the user should see their name "<fullName>" on the petition page
 
     Examples:
@@ -53,7 +53,7 @@ Feature: User petition success
   @allure.label.parentSuite:PetitionSignup
   Scenario: the user can use Tab and Enter keys to navigate and submit
     Given the user is on the signup page
-    When the user enters a Full name "John Doe" into the Full name field
+    When the user provides their full name "John Doe"
     And the user presses the Tab key
     And the user presses the Enter key
     Then the user should see their name "John Doe" on the petition page
