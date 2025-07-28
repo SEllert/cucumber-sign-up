@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cucumber-js --config cucumber.config.js",
+    "test:chromium": "cross-env BROWSER=chromium npm test",
+    "test:firefox": "cross-env BROWSER=firefox npm test",
+    "test:webkit": "cross-env BROWSER=webkit npm test",
+    "test:all-browsers": "npm run test:chromium && npm run test:firefox && npm run test:webkit",
     "test:parallel": "npx cucumber-js --config cucumber.config.js --parallel 4",
+    "test:parallel:chromium": "cross-env BROWSER=chromium npm run test:parallel",
+    "test:parallel:firefox": "cross-env BROWSER=firefox npm run test:parallel",
+    "test:parallel:webkit": "cross-env BROWSER=webkit npm run test:parallel",
     "test:tagged:parallel": "npx cucumber-js --config cucumber.config.js --tags",
     "test:clean": "npm run allure:clean && npm run test",
     "test:clean:parallel": "npm run allure:clean && npm run test:parallel",
@@ -22,6 +29,7 @@
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.15",
     "allure-cucumberjs": "^3.3.2",
+    "cross-env": "^10.0.0",
     "git-rev-sync": "^3.0.2",
     "ts-node": "^10.9.2"
   }
