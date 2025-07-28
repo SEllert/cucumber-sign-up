@@ -1,0 +1,9 @@
+{
+  "cucumber.glue": [
+    "src/steps/**/*.ts"
+  ],
+  "cucumber.features": [
+    "src/features/**/*.feature"
+  ],
+  "cucumber.typescript": true
+}
