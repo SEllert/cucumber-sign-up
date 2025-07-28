@@ -1,7 +1,8 @@
 {
     "default": {
         "require": [
-            "src/steps/**/*.ts"
+            "src/steps/**/*.ts",
+            "scripts/hooks.ts"
         ],
         "paths": [
             "src/features/**/*.feature"

@@ -1,15 +1,16 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { page } from '../../browswerSetup';
 import { SignUpPage } from '../page-objects/signup-page.pom';
 import { CustomWorld } from '../support/world';
 
 
 Given('the user is on the signup page', async function (this: CustomWorld) {
-    // 'this' refers to the CustomWorld instance for this scenario
-    this.signUpPage = new SignUpPage(page);
+    if (!this.page) {
+        throw new Error('Playwright page not initialized. Check your hooks and World setup.');
+    }
+    this.signUpPage = new SignUpPage(this.page);
     await this.signUpPage.goto();
-    const screenshot = await this.signUpPage.page.screenshot({ fullPage: true });
+    const screenshot = await this.page.screenshot({ fullPage: true });
     await this.attach(screenshot, 'image/png');
 });
 
@@ -33,7 +34,8 @@ When('the user presses the Tab key', async function (this: CustomWorld) {
     if (!this.signUpPage) {
         throw new Error('SignUpPage not initialized. Make sure "Given the user is on the signup page" step runs first.');
     }
-    await this.signUpPage.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+
 });
 
 When('the user presses the Enter key', async function (this: CustomWorld) {

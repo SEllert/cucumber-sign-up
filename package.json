@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js",
-    "test:watch": "cucumber-js --watch",
+    "test": " npx cucumber-js --config cucumber.config.js",
+    "test:watch": " npx cucumber-js --config cucumber.config.js --watch",
     "allure:serve": "allure serve allure-results",
     "allure:clean": "powershell -Command \"Get-ChildItem -Path 'allure-results' | Where-Object { $_.Name -notmatch 'category\\.json|environment\\.properties|executor\\.json' } | Remove-Item -Force\"",
     "test:clean": "npm run allure:clean && npm run test"
@@ -20,6 +20,7 @@
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.15",
     "allure-cucumberjs": "^3.3.2",
+    "git-rev-sync": "^3.0.2",
     "ts-node": "^10.9.2"
   }
 }
