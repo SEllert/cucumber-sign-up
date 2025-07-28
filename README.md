@@ -33,11 +33,13 @@ cucumber-sign-up/
 │   │   └── signUpSteps.ts
 │   └── page-objects/       # Page Object Model classes
 │       └── signup-page.pom.ts
+├── support/                # Test support files
+│   ├── hooks.ts            # Test hooks
+│   └── world.ts            # Custom World definition
 ├── allure-results/         # Allure test results
 ├── test-results/           # Playwright test results
 ├── cucumber.config.js      # Cucumber configuration
 ├── playwright.config.ts    # Playwright configuration
-├── browserSetup.ts         # Browser setup configuration
 └── package.json
 ```
 
@@ -70,15 +72,35 @@ The test suite covers the following scenarios:
 
 ### ✅ Successful Petition Sign-up
 - **Icelandic Names**: Tests with various Icelandic characters and names
-- **English Names**: Tests with different English name formats
-- **Accessibility**: Tab navigation and Enter key submission
+- **English Names**: Tests with different English name formats including:
+  - Short names (Al Li)
+  - Names with hyphens and apostrophes (Anna-Marie O'Neill)
+  - Extremely long names (Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr.)
+
+### ♿ Accessibility Testing
+
+This framework includes dedicated tests for accessibility compliance:
+
+#### Keyboard Navigation
+```gherkin
+Scenario: The user can use Tab and Enter keys to navigate and submit
+  Given the user is on the signup page
+  When the user provides their full name "John Doe"
+  And the user presses the Tab key
+  And the user presses the Enter key
+  Then the user should see their name "John Doe" on the petition page
+```
 
 ### 🏷️ Test Tags
-- `@icelandic` - Icelandic name tests
-- `@english` - English name tests  
+- `@language:icelandic` - Icelandic name tests
+- `@language:english` - English name tests  
 - `@positive` - Positive test scenarios
-- `@skip` - Skipped tests
+- `@skip` - Skipped tests (currently applied to Icelandic tests)
+- `@regression` - Full regression test suite
+- `@smoke` - Critical path tests
+- `@sanity` - Basic functionality tests
 - `@petition` - All petition-related tests
+- `@allure.label.*` - Organizational tags for Allure reporting
 
 ## 🚀 Running Tests
 
@@ -120,6 +142,13 @@ npm run test:tagged:parallel "@english" -- --parallel 4
 # Run tests with clean results directory in parallel
 npm run test:clean:parallel
 ```
+
+### Parallel Execution Benefits
+
+1. **Faster Feedback**: Run tests up to 4x faster by utilizing multiple CPU cores
+2. **Resource Efficiency**: Make better use of available system resources
+3. **Maintained Reporting**: Allure reports properly aggregate results from parallel runs
+4. **Isolated Execution**: Each scenario runs in its own context with dedicated browser
 
 ## 📊 Reporting
 
@@ -185,10 +214,13 @@ export class SignUpPage {
 
 ### Example Step Definition:
 ```typescript
-Given('the user is on the signup page', async function () {
-    signUpPage = new SignUpPage(page);
-    await signUpPage.goto();
-    const screenshot = await page.screenshot();
+Given('the user is on the signup page', async function (this: CustomWorld) {
+    if (!this.page) {
+        throw new Error('Playwright page not initialized. Check your hooks and World setup.');
+    }
+    this.signUpPage = new SignUpPage(this.page);
+    await this.signUpPage.goto();
+    const screenshot = await this.page.screenshot({ fullPage: true });
     await this.attach(screenshot, 'image/png');
 });
 ```
@@ -206,6 +238,26 @@ The test suite includes comprehensive internationalization testing:
 - ✅ Chromium
 - ✅ Firefox  
 - ✅ WebKit (Safari)
+
+## 🌐 Multi-Browser Testing
+
+This framework supports running tests across different browsers for comprehensive cross-browser validation.
+
+### Running Tests in Different Browsers
+
+```bash
+# Run tests in Chromium (default)
+npm run test:chromium
+
+# Run tests in Firefox
+npm run test:firefox
+
+# Run tests in WebKit (Safari)
+npm run test:webkit
+
+# Run tests in all browsers sequentially
+npm run test:all-browsers
+```
 
 ## 📝 Contributing
 
@@ -230,10 +282,13 @@ This project is licensed under the ISC License.
 ### Features
 - ✅ TypeScript support
 - ✅ Automatic screenshot capture
-- ✅ Cross-platform testing
+- ✅ Cross-browser testing (Chromium, Firefox, WebKit)
 - ✅ Rich HTML reporting
 - ✅ Tag-based test filtering
 - ✅ Watch mode for development
+- ✅ Parallel execution support
+- ✅ Test isolation with World pattern
+- ✅ Accessibility testing
 
 ---
 
