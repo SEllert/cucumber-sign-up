@@ -104,6 +104,23 @@ npx cucumber-js src/features/successFull.feature
 npm run test:watch
 ```
 
+## ⚡ Parallel Execution
+
+This framework supports parallel test execution for faster feedback cycles and reduced test run times.
+
+### Running Tests in Parallel
+
+```bash
+# Run with 4 parallel workers
+npm run test:parallel
+
+# Run tagged tests in parallel
+npm run test:tagged:parallel "@english" -- --parallel 4
+
+# Run tests with clean results directory in parallel
+npm run test:clean:parallel
+```
+
 ## 📊 Reporting
 
 ### Generate Allure Report
