@@ -19,6 +19,8 @@ A robust test automation framework for petition sign-up functionality using **Cu
 - **Internationalization Testing**: Support for Icelandic and English names
 - **Accessibility Testing**: Tab navigation and keyboard interaction tests
 - **Page Object Model**: Maintainable test structure with POM pattern
+- **World Pattern**: Isolated test context for parallel execution
+- **Dynamic Environment Info**: Comprehensive system information in reports
 
 ## 📁 Project Structure
 
