@@ -16,6 +16,7 @@
     "test:tagged:parallel": "npx cucumber-js --config cucumber.config.js --tags",
     "test:clean": "npm run allure:clean && npm run test",
     "test:clean:parallel": "npm run allure:clean && npm run test:parallel",
+    "test:watch": "chokidar \"src/**/*.ts\" \"src/**/*.feature\" -c \"npm test\"",
     "allure:serve": "allure serve allure-results",
     "allure:clean": "powershell -Command \"Get-ChildItem -Path 'allure-results' | Where-Object { $_.Name -notmatch 'category\\.json|environment\\.properties|executor\\.json' } | Remove-Item -Force\""
   },
@@ -29,6 +30,7 @@
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.15",
     "allure-cucumberjs": "^3.3.2",
+    "chokidar-cli": "^3.0.0",
     "cross-env": "^10.0.0",
     "git-rev-sync": "^3.0.2",
     "ts-node": "^10.9.2"
