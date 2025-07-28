@@ -3,7 +3,7 @@ Feature: User petition success
   This feature covers the petition signup process for users.
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
-  @icelandic @positive @skip 
+  @language:icelandic @positive @skip @regression
   @allure.label.suite:PetitionSignupPossitive
   @allure.label.parentSuite:PetitionSignup
   Scenario: Petition accepts Icelandic names with special characters
@@ -28,7 +28,7 @@ Feature: User petition success
       | Ásta Ragnhildur Guðbjörnsdóttir    |
       | Kristín Þóra Þórðardóttir          |
 
-  @english @positive
+  @language:english @positive @smoke 
   @allure.label.suite:PetitionSignupPossitive 
   @allure.label.parentSuite:PetitionSignup
   Scenario: Petition accepts English
@@ -48,7 +48,7 @@ Feature: User petition success
       | Anna-Marie O'Neill                                    |
       | Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr. |
 
-  @allure.label.suite:Accessibility
+  @allure.label.suite:Accessibility @sanity
   @allure.label.suite:PetitionSignupPossitive 
   @allure.label.parentSuite:PetitionSignup
   Scenario: the user can use Tab and Enter keys to navigate and submit
