@@ -10,7 +10,7 @@ Feature: User petition success
 
     Given the user is on the signup page
     When the user provides their full name "<fullName>"
-    And the user user submits the petition
+    And the user submits the petition
     Then the user should see their name "<fullName>" on the petition page
 
     Examples:
@@ -33,7 +33,7 @@ Feature: User petition success
 
     Given the user is on the signup page
     When the user provides their full name "<fullName>"
-    And the user user submits the petition
+    And the user submits the petition
     Then the user should see their name "<fullName>" on the petition page
 
     Examples:

@@ -10,7 +10,6 @@ Given('the user is on the signup page', async function (this: CustomWorld) {
     }
     this.signUpPage = new SignUpPage(this.page);
     await this.signUpPage.goto();
-    const screenshot = await this.page.screenshot({ fullPage: true });
     await this.captureScreenshot('signup-page');
 });
 
@@ -23,7 +22,7 @@ When('the user provides their full name {string}', async function (this: CustomW
 });
 
 // This step works for both When and And keywords
-When('the user user submits the petition', async function (this: CustomWorld) {
+When('the user submits the petition', async function (this: CustomWorld) {
     if (!this.signUpPage) {
         throw new Error('SignUpPage not initialized. Make sure "Given the user is on the signup page" step runs first.');
     }
@@ -51,6 +50,5 @@ Then('the user should see their name {string} on the petition page', async funct
     }
     const nameLocator = this.signUpPage.getNameInPetitionContainer(fullName);
     await expect(nameLocator).toBeVisible();
-    const screenshot = await this.signUpPage.page.screenshot({ fullPage: true });
     await this.captureScreenshot('petition-signed');
 });
