@@ -11,7 +11,7 @@ Given('the user is on the signup page', async function (this: CustomWorld) {
     this.signUpPage = new SignUpPage(this.page);
     await this.signUpPage.goto();
     const screenshot = await this.page.screenshot({ fullPage: true });
-    await this.attach(screenshot, 'image/png');
+    await this.captureScreenshot('signup-page');
 });
 
 When('the user provides their full name {string}', async function (this: CustomWorld, fullName: string) {
@@ -52,5 +52,5 @@ Then('the user should see their name {string} on the petition page', async funct
     const nameLocator = this.signUpPage.getNameInPetitionContainer(fullName);
     await expect(nameLocator).toBeVisible();
     const screenshot = await this.signUpPage.page.screenshot({ fullPage: true });
-    await this.attach(screenshot, 'image/png');
+    await this.captureScreenshot('petition-signed');
 });

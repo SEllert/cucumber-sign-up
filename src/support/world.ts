@@ -37,6 +37,20 @@ export class CustomWorld extends World {
     await this.page.close();
     await this.browser.close();
   }
+
+  async captureScreenshot(name?: string) {
+    if (!this.page) {
+      throw new Error('Page not initialized');
+    }
+    
+    const screenshot = await this.page.screenshot({ fullPage: true });
+    await this.attach(screenshot, 'image/png');
+    
+    if (name) {
+      // You can add metadata or custom naming
+      this.log(`Screenshot captured: ${name}`);
+    }
+  }
 }
 
 setWorldConstructor(CustomWorld);
