@@ -33,16 +33,15 @@ When('the user presses the Tab key', async function (this: CustomWorld) {
     if (!this.signUpPage) {
         throw new Error('SignUpPage not initialized. Make sure "Given the user is on the signup page" step runs first.');
     }
-    await this.page.keyboard.press('Tab');
-
+    await this.signUpPage.pressTab();
 });
 
 When('the user presses the Enter key', async function (this: CustomWorld) {
     if (!this.signUpPage) {
         throw new Error('SignUpPage not initialized. Make sure "Given the user is on the signup page" step runs first.');
     }
-    await this.signUpPage.page.keyboard.press('Enter');
-}); 
+    await this.signUpPage.pressEnter();
+});
 
 Then('the user should see their name {string} on the petition page', async function (this: CustomWorld, fullName: string) {
     if (!this.signUpPage) {

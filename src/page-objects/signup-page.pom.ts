@@ -23,4 +23,12 @@ export class SignUpPage {
         const container = this.page.locator('div.max-h-96.overflow-y-auto');
         return container.locator(`span.text-gray-900.font-medium.text-lg:has-text(\"${fullName}\")`);
     }
+
+    async pressTab() {
+        await this.page.keyboard.press('Tab');
+    }
+
+    async pressEnter() {
+        await this.page.keyboard.press('Enter');
+    }
 }
