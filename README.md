@@ -1,26 +1,17 @@
-# Cucumber Sign-Up Test Automation
+# Cucumber Sign-Up Test Automation 🚀
 
-This project explores Cucumber-style testing and reporting techniques in various ways. A simple signup page has been created with Bolt, serving as the foundation for comprehensive test automation coverage.
+A modern end-to-end testing framework for petition sign-up functionality using Cucumber.js, Playwright, and TypeScript.
 
-**Project Goals:**
-- Achieve comprehensive test coverage with clear visibility into coverage metrics
-- Quickly identify coverage gaps and testing blind spots  
-- Provide clear root cause analysis for test failures through detailed reporting
-- Demonstrate BDD best practices with Cucumber.js
+## ✨ Key Features
 
-A robust test automation framework for petition sign-up functionality using **Cucumber.js**, **Playwright**, and **Allure** reporting.
-
-## 🚀 Features
-
-- **BDD Testing**: Behavior-driven development with Cucumber.js
-- **Cross-browser Testing**: Powered by Playwright
-- **TypeScript Support**: Full TypeScript integration for type safety
-- **Allure Reporting**: Rich HTML reports with screenshots and attachments
-- **Internationalization Testing**: Support for Icelandic and English names
-- **Accessibility Testing**: Tab navigation and keyboard interaction tests
-- **Page Object Model**: Maintainable test structure with POM pattern
-- **World Pattern**: Isolated test context for parallel execution
-- **Dynamic Environment Info**: Comprehensive system information in reports
+- **BDD Testing**: Cucumber.js for behavior-driven development
+- **TypeScript**: Full type safety and improved maintainability
+- **Cross-browser**: Tests run in Chromium, Firefox, and WebKit
+- **Parallel Execution**: Run tests up to 4x faster
+- **Rich Reporting**: Allure reports with screenshots
+- **Page Objects**: Clean separation of concerns
+- **Internationalization**: Support for Icelandic names
+- **Accessibility**: Keyboard navigation testing
 
 ## 📁 Project Structure
 
@@ -28,268 +19,120 @@ A robust test automation framework for petition sign-up functionality using **Cu
 cucumber-sign-up/
 ├── src/
 │   ├── features/           # Cucumber feature files
-│   │   └── successFull.feature
-│   ├── steps/              # Step definitions
-│   │   └── signUpSteps.ts
-│   └── page-objects/       # Page Object Model classes
-│       └── signup-page.pom.ts
-├── support/                # Test support files
-│   ├── hooks.ts            # Test hooks
-│   └── world.ts            # Custom World definition
-├── allure-results/         # Allure test results
-├── test-results/           # Playwright test results
-├── cucumber.config.js      # Cucumber configuration
-├── playwright.config.ts    # Playwright configuration
-└── package.json
+│   ├── steps/             # Step definitions
+│   ├── support/           # World and hooks
+│   └── page-objects/      # Page Object Models
+├── reports/               # Test reports directory
+├── allure-results/        # Allure report data
+└── config files          # Configuration files
 ```
 
-## 🛠️ Prerequisites
+## 🚀 Getting Started
 
-- **Node.js** (v16 or higher)
-- **npm** or **yarn**
+### Prerequisites
 
-## 📦 Installation
+- Node.js (14 or higher)
+- npm or yarn
+- Visual Studio Code (recommended)
 
-1. Clone the repository:
+### Installation
+
 ```bash
-git clone https://github.com/SEllert/cucumber-sign-up.git
+git clone https://github.com/yourusername/cucumber-sign-up.git
 cd cucumber-sign-up
-```
-
-2. Install dependencies:
-```bash
 npm install
 ```
 
-3. Install Playwright browsers:
+## 🎯 Running Tests
+
+### Basic Test Execution
+
 ```bash
-npx playwright install
-```
-
-## 🎯 Test Scenarios
-
-The test suite covers the following scenarios:
-
-### ✅ Successful Petition Sign-up
-- **Icelandic Names**: Tests with various Icelandic characters and names
-- **English Names**: Tests with different English name formats including:
-  - Short names (Al Li)
-  - Names with hyphens and apostrophes (Anna-Marie O'Neill)
-  - Extremely long names (Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr.)
-
-### ♿ Accessibility Testing
-
-This framework includes dedicated tests for accessibility compliance:
-
-#### Keyboard Navigation
-```gherkin
-Scenario: The user can use Tab and Enter keys to navigate and submit
-  Given the user is on the signup page
-  When the user provides their full name "John Doe"
-  And the user presses the Tab key
-  And the user presses the Enter key
-  Then the user should see their name "John Doe" on the petition page
-```
-
-### 🏷️ Test Tags
-- `@language:icelandic` - Icelandic name tests
-- `@language:english` - English name tests  
-- `@positive` - Positive test scenarios
-- `@skip` - Skipped tests (currently applied to Icelandic tests)
-- `@regression` - Full regression test suite
-- `@smoke` - Critical path tests
-- `@sanity` - Basic functionality tests
-- `@petition` - All petition-related tests
-- `@allure.label.*` - Organizational tags for Allure reporting
-
-## 🚀 Running Tests
-
-### Run All Tests
-```bash
+# Run all tests
 npm test
-```
 
-### Run Specific Tags
-```bash
-# Run only English name tests
-npx cucumber-js --tags "@english"
+# Run tests in specific browsers
+npm run test:chromium
+npm run test:firefox
+npm run test:webkit
 
-# Run positive tests excluding skipped ones
-npx cucumber-js --tags "@positive and not @skip"
-
-# Run specific feature
-npx cucumber-js src/features/successFull.feature
+# Run all browser tests sequentially
+npm run test:all-browsers
 ```
 
 ### Watch Mode
+
 ```bash
+# Auto-run tests on file changes
 npm run test:watch
 ```
 
-## ⚡ Parallel Execution
-
-This framework supports parallel test execution for faster feedback cycles and reduced test run times.
-
-### Running Tests in Parallel
+### Parallel Execution
 
 ```bash
 # Run with 4 parallel workers
 npm run test:parallel
 
+# Run specific browser in parallel
+npm run test:parallel:chromium
+npm run test:parallel:firefox
+npm run test:parallel:webkit
+
 # Run tagged tests in parallel
 npm run test:tagged:parallel "@english" -- --parallel 4
 
-# Run tests with clean results directory in parallel
+# Clean results and run parallel
 npm run test:clean:parallel
 ```
 
-### Parallel Execution Benefits
+### Running with Tags
 
-1. **Faster Feedback**: Run tests up to 4x faster by utilizing multiple CPU cores
-2. **Resource Efficiency**: Make better use of available system resources
-3. **Maintained Reporting**: Allure reports properly aggregate results from parallel runs
-4. **Isolated Execution**: Each scenario runs in its own context with dedicated browser
-
-## 📊 Reporting
-
-### Generate Allure Report
 ```bash
+# Run English language tests
+npx cucumber-js --tags "@language:english"
+
+# Run positive tests (excluding skipped)
+npx cucumber-js --tags "@positive and not @skip"
+```
+
+## 📊 Test Reports
+
+### Allure Reports
+
+```bash
+# Generate and open report
 npm run allure:serve
+
+# Clean previous results
+npm run allure:clean
 ```
 
-This will:
-1. Generate an Allure report from test results
-2. Open the report in your default browser
-3. Display detailed test execution results with screenshots
+## 🏷️ Available Tags
 
-### Report Features
-- 📸 **Screenshots**: Automatic screenshot capture on test steps
-- 📋 **Environment Info**: OS, Node.js, and browser details
-- 🏷️ **Test Categorization**: Organized by suites and tags
-- 📈 **Trends**: Historical test execution trends
+- `@language:icelandic` - Tests with Icelandic names
+- `@language:english` - Tests with English names
+- `@positive` - Happy path scenarios
+- `@regression` - Full regression suite
+- `@smoke` - Critical path tests
+- `@skip` - Temporarily disabled tests
 
-## ⚙️ Configuration
+## 🌟 Best Practices
 
-### Cucumber Configuration (`cucumber.config.js`)
-- **Dynamic Environment Info**: Automatically detects OS platform and Node.js version
-- **TypeScript Support**: Uses `ts-node/register` for TypeScript execution
-- **Allure Integration**: Configured for rich reporting
+- Use of Page Object Model for maintainability
+- Screenshot capture for debugging
+- Strong typing with TypeScript
+- Isolated test contexts using World pattern
+- Cross-browser verification
+- Accessibility testing
 
-### Key Configuration Options:
-```javascript
-{
-  require: ["src/steps/**/*.ts"],          // Step definitions
-  paths: ["src/features/**/*.feature"],    // Feature files
-  requireModule: ["ts-node/register"],     // TypeScript support
-  format: ["allure-cucumberjs/reporter"]   // Allure reporting
-}
-```
-
-## 🎨 Page Object Model
-
-The project uses the Page Object Model pattern for maintainable tests:
-
-```typescript
-// Example: SignUpPage class
-export class SignUpPage {
-  constructor(private page: Page) {}
-  
-  async goto() {
-    await this.page.goto('/signup');
-  }
-  
-  async fillName(name: string) {
-    await this.signUpField.fill(name);
-  }
-}
-```
-
-## 🔧 Development
-
-### Adding New Tests
-
-1. **Create Feature File**: Add `.feature` files in `src/features/`
-2. **Write Step Definitions**: Implement steps in `src/steps/`
-3. **Create Page Objects**: Add page classes in `src/page-objects/`
-
-### Example Step Definition:
-```typescript
-Given('the user is on the signup page', async function (this: CustomWorld) {
-    if (!this.page) {
-        throw new Error('Playwright page not initialized. Check your hooks and World setup.');
-    }
-    this.signUpPage = new SignUpPage(this.page);
-    await this.signUpPage.goto();
-    const screenshot = await this.page.screenshot({ fullPage: true });
-    await this.attach(screenshot, 'image/png');
-});
-```
-
-## 🌐 Internationalization
-
-The test suite includes comprehensive internationalization testing:
-
-- **Icelandic Characters**: Þ, ð, æ, ö, á, é, í, ó, ú, ý
-- **Special Names**: Names with hyphens, apostrophes, and multiple parts
-- **Unicode Support**: Full Unicode character support
-
-## 🎭 Browser Support
-
-- ✅ Chromium
-- ✅ Firefox  
-- ✅ WebKit (Safari)
-
-## 🌐 Multi-Browser Testing
-
-This framework supports running tests across different browsers for comprehensive cross-browser validation.
-
-### Running Tests in Different Browsers
-
-```bash
-# Run tests in Chromium (default)
-npm run test:chromium
-
-# Run tests in Firefox
-npm run test:firefox
-
-# Run tests in WebKit (Safari)
-npm run test:webkit
-
-# Run tests in all browsers sequentially
-npm run test:all-browsers
-```
-
-## 📝 Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is licensed under the ISC License.
-
-## 🔗 Dependencies
-
-### Main Dependencies
-- **@cucumber/cucumber**: ^12.1.0
-- **@playwright/test**: ^1.54.1
-- **allure-cucumberjs**: ^3.3.2
-- **ts-node**: ^10.9.2
-
-### Features
-- ✅ TypeScript support
-- ✅ Automatic screenshot capture
-- ✅ Cross-browser testing (Chromium, Firefox, WebKit)
-- ✅ Rich HTML reporting
-- ✅ Tag-based test filtering
-- ✅ Watch mode for development
-- ✅ Parallel execution support
-- ✅ Test isolation with World pattern
-- ✅ Accessibility testing
-
----
-
-**Happy Testing!** 🚀
+This project is licensed under the MIT License.
