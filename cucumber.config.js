@@ -9,7 +9,12 @@ module.exports = {
         ],
         paths: ["src/features/**/*.feature"],
         requireModule: ["ts-node/register"],
-        format: ["allure-cucumberjs/reporter"],
+        format: [
+            "allure-cucumberjs/reporter",
+            "html:reports/cucumber-report.html",
+            "json:reports/cucumber-report.json",
+            "summary"
+        ],
         formatOptions: {
             snippetInterface: "async-await",
             resultsDir: "allure-results",
