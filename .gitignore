@@ -8,10 +8,11 @@ node_modules/
 # Ignore everything in allure-results
 allure-results/*
 allure-report/
-reports/
+reports/*
 
 # But keep categories.json
 !allure-results/categories.json
 
 reports/cucumber-report.html
 reports/cucumber-report.json
+reports/cucumber-report.html

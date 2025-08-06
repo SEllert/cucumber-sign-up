@@ -12,7 +12,7 @@ module.exports = {
         format: [
             "allure-cucumberjs/reporter",
             "html:reports/cucumber-report.html",
-            "json:reports/cucumber-report.json",
+           "json:reports/cucumber-report.json",
             "summary"
         ],
         formatOptions: {
