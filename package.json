@@ -18,10 +18,10 @@
     "test:clean:parallel": "npm run allure:clean && npm run test:parallel",
     "test:watch": "chokidar \"src/**/*.ts\" \"src/**/*.feature\" -c \"npm test\"",
     "allure:serve": "allure serve allure-results",
-    "allure:clean": "powershell -Command \"Get-ChildItem -Path 'allure-results' | Where-Object { $_.Name -notmatch 'category\\.json|environment\\.properties|executor\\.json' } | Remove-Item -Force\""
+    "allure:clean": "powershell -Command \"Get-ChildItem -Path 'allure-results' | Where-Object { $_.Name -notmatch 'category\\.json|executor\\.json' } | Remove-Item -Force\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["playwright", "cucumber", "testing", "e2e"],
+  "author": "Sigurdur Ellert Sigurdsson",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
