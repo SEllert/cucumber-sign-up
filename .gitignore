@@ -13,3 +13,5 @@ reports/
 # But keep categories.json
 !allure-results/categories.json
 
+reports/cucumber-report.html
+reports/cucumber-report.json
