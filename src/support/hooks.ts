@@ -1,5 +1,10 @@
-import { Before, After } from '@cucumber/cucumber';
+import { Before, After, BeforeAll } from '@cucumber/cucumber';
 import { CustomWorld } from './world';
+
+// Log the test environment before all scenarios
+BeforeAll(function () {
+  console.log(`TEST ENVIRONMENT: Browser=${process.env.BROWSER || 'chromium'}`);
+});
 
 // Use unique IDs for scenarios in parallel runs
 Before(async function (this: CustomWorld, { pickle }) {
