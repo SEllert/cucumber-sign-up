@@ -4,19 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cucumber-js --config cucumber.config.js",
-    "test:chromium": "cross-env BROWSER=chromium npm test",
-    "test:firefox": "cross-env BROWSER=firefox npm test",
-    "test:webkit": "cross-env BROWSER=webkit npm test",
-    "test:all-browsers": "npm run test:chromium && npm run test:firefox && npm run test:webkit",
-    "test:parallel": "npx cucumber-js --config cucumber.config.js --parallel 4",
-    "test:parallel:chromium": "cross-env BROWSER=chromium npm run test:parallel",
-    "test:parallel:firefox": "cross-env BROWSER=firefox npm run test:parallel",
-    "test:parallel:webkit": "cross-env BROWSER=webkit npm run test:parallel",
+    "test": "npx cucumber-js --config cucumber.config.js && npm run report:generate:open",
+    "test:chromium": "cross-env BROWSER=chromium npm test && npm run report:generate:open",
+    "test:firefox": "cross-env BROWSER=firefox npm test && npm run report:generate:open",
+    "test:webkit": "cross-env BROWSER=webkit npm test && npm run report:generate:open",
+    "test:all-browsers": "npm run test:chromium && npm run test:firefox && npm run test:webkit && npm run report:generate:open",
+    "test:parallel": "npx cucumber-js --config cucumber.config.js --parallel 4 && npm run report:generate:open",
+    "test:parallel:chromium": "cross-env BROWSER=chromium npm run test:parallel && npm run report:generate:open",
+    "test:parallel:firefox": "cross-env BROWSER=firefox npm run test:parallel && npm run report:generate:open",
+    "test:parallel:webkit": "cross-env BROWSER=webkit npm run test:parallel && npm run report:generate:open",
     "test:tagged:parallel": "npx cucumber-js --config cucumber.config.js --tags",
     "test:watch": "chokidar \"src/**/*.ts\" \"src/**/*.feature\" -c \"npm test\"",
     "test:visual": "npx cucumber-js --tags @visual --config cucumber.config.js",
-    "test:visual:update": "cross-env UPDATE_SNAPSHOTS=true npx cucumber-js --tags '@visual' --config cucumber.config.js"
+    "test:visual:update": "cross-env UPDATE_SNAPSHOTS=true npx cucumber-js --tags '@visual' --config cucumber.config.js",
+    "report:generate": "node src/support/generate-report.js",
+    "report:open": "start \"\" \"reports/html/index.html\"",
+    "report:generate:open": "npm run report:generate && npm run report:open"
   },
   "keywords": [
     "playwright",
@@ -35,6 +38,7 @@
     "chokidar-cli": "^3.0.0",
     "cross-env": "^10.0.0",
     "git-rev-sync": "^3.0.2",
+    "multiple-cucumber-html-reporter": "^3.9.3",
     "ts-node": "^10.9.2"
   }
 }
