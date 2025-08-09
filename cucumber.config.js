@@ -1,38 +1,44 @@
 const os = require('os');
 const git = require('git-rev-sync');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
     default: {
         require: [
-            "src/support/**/*.ts",    // Load world and support files first
-            "src/steps/**/*.ts",       // Then load step definitions
+            "src/support/**/*.ts",
+            "src/steps/**/*.ts",
         ],
         paths: ["src/features/**/*.feature"],
         requireModule: ["ts-node/register"],
         format: [
-            "allure-cucumberjs/reporter",
+            "progress",
             "html:reports/cucumber-report.html",
-           "json:reports/cucumber-report.json",
+            "json:reports/cucumber-report.json",
             "summary"
         ],
         formatOptions: {
-            snippetInterface: "async-await",
-            resultsDir: "allure-results",
-            environmentInfo: {
-                os_platform: os.platform(),
-                os_release: os.release(),
-                node_version: process.version,
-                cucumber_version: require('@cucumber/cucumber/package.json').version,
-                browser_name: process.env.BROWSER || 'chromium', // or dynamically detect
-                browser_version: require('playwright/package.json').version,
-                git_commit: git.short(),
-                git_branch: git.branch(),
-                run_timestamp: new Date().toISOString(),
-                run_user: os.userInfo().username,
-                hostname: os.hostname(),
-                cpu_arch: os.arch(),
-                total_memory_gb: (os.totalmem() / (1024 ** 3)).toFixed(2),
-            }
+            snippetInterface: "async-await"
         }
     }
 };
+
+
+// Create environment.properties for Allure
+const environmentInfo = {
+    'os.platform': os.platform(),
+    'os.release': os.release(),
+    'node.version': process.version,
+    'browser.name': process.env.BROWSER || 'chromium',
+    'git.commit': git.short(),
+    'git.branch': git.branch(),
+    'run.timestamp': new Date().toISOString(),
+    'run.user': os.userInfo().username,
+};
+
+const envProps = Object.entries(environmentInfo)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('\n');
+
+// Write environment.properties
+fs.writeFileSync(path.join('reports', 'environment.properties'), envProps);

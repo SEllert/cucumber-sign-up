@@ -1,5 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
+// Update the import path to match the actual file name, e.g., 'signupPage' or 'SignUpPage'
 import { SignUpPage } from '../page-objects/signup-page.pom';
 import { CustomWorld } from '../support/world';
 
