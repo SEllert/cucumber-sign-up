@@ -2,30 +2,35 @@
 
 A modern end-to-end testing framework for petition sign-up functionality using Cucumber.js, Playwright, and TypeScript.
 
+---
+
 ## ✨ Key Features
 
 - **BDD Testing**: Cucumber.js for behavior-driven development
 - **TypeScript**: Full type safety and improved maintainability
 - **Cross-browser**: Tests run in Chromium, Firefox, and WebKit
 - **Parallel Execution**: Run tests up to 4x faster
-- **Rich Reporting**: Allure reports with screenshots
+- **Rich Reporting**: Multiple Cucumber HTML Reporter with environment info
 - **Page Objects**: Clean separation of concerns
 - **Internationalization**: Support for Icelandic names
 - **Accessibility**: Keyboard navigation testing
+
+---
 
 ## 📁 Project Structure
 
 ```
 cucumber-sign-up/
 ├── src/
-│   ├── features/           # Cucumber feature files
-│   ├── steps/             # Step definitions
-│   ├── support/           # World and hooks
-│   └── page-objects/      # Page Object Models
-├── reports/               # Test reports directory
-├── allure-results/        # Allure report data
-└── config files          # Configuration files
+│   ├── features/         # Cucumber feature files
+│   ├── steps/            # Step definitions
+│   ├── support/          # World, hooks, helpers, environment info, report generator
+│   └── page-objects/     # Page Object Models
+├── reports/              # Test reports directory (JSON and HTML)
+└── config files          # Configuration files (cucumber.config.js, etc.)
 ```
+
+---
 
 ## 🚀 Getting Started
 
@@ -42,6 +47,8 @@ git clone https://github.com/yourusername/cucumber-sign-up.git
 cd cucumber-sign-up
 npm install
 ```
+
+---
 
 ## 🎯 Running Tests
 
@@ -95,17 +102,27 @@ npx cucumber-js --tags "@language:english"
 npx cucumber-js --tags "@positive and not @skip"
 ```
 
+---
+
 ## 📊 Test Reports
 
-### Allure Reports
+### Multiple Cucumber HTML Reporter
 
 ```bash
-# Generate and open report
-npm run allure:serve
+# Generate the HTML report
+npm run report:generate
 
-# Clean previous results
-npm run allure:clean
+# Open the HTML report in your browser
+npm run report:open
+
+# Generate and open the report in one step
+npm run report:generate:open
 ```
+
+- The report will be available at `reports/html/index.html`.
+- The report includes environment information (browser, OS, Node version, etc.).
+
+---
 
 ## 🏷️ Available Tags
 
@@ -115,6 +132,9 @@ npm run allure:clean
 - `@regression` - Full regression suite
 - `@smoke` - Critical path tests
 - `@skip` - Temporarily disabled tests
+- `@visual` - Visual regression tests
+
+---
 
 ## 🌟 Best Practices
 
@@ -125,6 +145,8 @@ npm run allure:clean
 - Cross-browser verification
 - Accessibility testing
 
+---
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -133,6 +155,15 @@ npm run allure:clean
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+---
+
 ## 📝 License
 
 This project is licensed under the MIT License.
+
+---
+
+## 💡 Tips
+
+- To add environment info to your reports, update `src/support/environment-info.ts` and `src/support/generate-report.js`.
+- For custom tags or new test types, simply add them to your `.feature` files and reference them in your scripts.
