@@ -23,11 +23,12 @@ A modern end-to-end testing framework for petition sign-up functionality using C
 cucumber-sign-up/
 ├── src/
 │   ├── features/         # Cucumber feature files
-│   ├── steps/            # Step definitions
-│   ├── support/          # World, hooks, helpers, environment info, report generator
-│   └── page-objects/     # Page Object Models
+│   ├── steps/            # Step definitions (TypeScript)
+│   ├── support/          # World, hooks, helpers, environment info (TypeScript), report generator (JS)
+│   └── page-objects/     # Page Object Models (TypeScript)
 ├── reports/              # Test reports directory (JSON and HTML)
-└── config files          # Configuration files (cucumber.config.js, etc.)
+├── cucumber.config.js    # Cucumber configuration (JavaScript)
+└── package.json          # Project scripts and dependencies
 ```
 
 ---
@@ -85,8 +86,8 @@ npm run test:parallel:chromium
 npm run test:parallel:firefox
 npm run test:parallel:webkit
 
-# Run tagged tests in parallel
-npm run test:tagged:parallel "@english" -- --parallel 4
+# Run tagged tests in parallel (example: @english)
+npm run test:tagged:parallel -- "@english"
 
 # Clean results and run parallel
 npm run test:clean:parallel
@@ -112,7 +113,7 @@ npx cucumber-js --tags "@positive and not @skip"
 # Generate the HTML report
 npm run report:generate
 
-# Open the HTML report in your browser
+# Open the HTML report in your browser (Windows)
 npm run report:open
 
 # Generate and open the report in one step
@@ -147,6 +148,46 @@ npm run report:generate:open
 
 ---
 
+## 🛠️ Troubleshooting
+
+- **No tests found:**  
+  Ensure your feature files and step definitions are in the correct folders and your tags match.
+- **Report not generated:**  
+  Make sure `reports/` exists and your test run produced a JSON report.
+- **Environment info missing:**  
+  Update `src/support/environment-info.ts` and ensure it is imported in both your hooks and report generator.
+- **Windows script issues:**  
+  Use double quotes (`"`) for tags in npm scripts, or remove quotes for simple tags.
+
+---
+
+## 🤖 Continuous Integration
+
+To automate tests and upload reports, add a workflow like:
+
+```yaml
+# .github/workflows/ci.yml
+name: E2E Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+      - run: npm run report:generate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: reports/html
+```
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -167,3 +208,4 @@ This project is licensed under the MIT License.
 
 - To add environment info to your reports, update `src/support/environment-info.ts` and `src/support/generate-report.js`.
 - For custom tags or new test types, simply add them to your `.feature` files and reference them in your scripts.
+- For more advanced reporting, see the [multiple-cucumber-html-reporter documentation](https://www.npmjs.com/package/multiple-cucumber-html-reporter).
