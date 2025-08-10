@@ -34,6 +34,7 @@
     "@cucumber/cucumber": "^12.1.0",
     "@cucumber/messages": "^28.1.0",
     "@playwright/test": "^1.54.1",
+    "@types/git-rev-sync": "^2.0.2",
     "@types/node": "^24.0.15",
     "chokidar-cli": "^3.0.0",
     "cross-env": "^10.0.0",

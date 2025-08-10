@@ -3,10 +3,12 @@
         "target": "es6",
         "module": "commonjs",
         "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/features/**/*.feature"],
+    "include": ["src/**/*.ts", "src/features/**/*.feature", "src/support/environment-info.js"],
     "exclude": ["node_modules", "src/**/*.spec.ts"]
 }

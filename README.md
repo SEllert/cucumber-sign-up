@@ -2,30 +2,36 @@
 
 A modern end-to-end testing framework for petition sign-up functionality using Cucumber.js, Playwright, and TypeScript.
 
+---
+
 ## ✨ Key Features
 
 - **BDD Testing**: Cucumber.js for behavior-driven development
 - **TypeScript**: Full type safety and improved maintainability
 - **Cross-browser**: Tests run in Chromium, Firefox, and WebKit
 - **Parallel Execution**: Run tests up to 4x faster
-- **Rich Reporting**: Allure reports with screenshots
+- **Rich Reporting**: Multiple Cucumber HTML Reporter with environment info
 - **Page Objects**: Clean separation of concerns
 - **Internationalization**: Support for Icelandic names
 - **Accessibility**: Keyboard navigation testing
+
+---
 
 ## 📁 Project Structure
 
 ```
 cucumber-sign-up/
 ├── src/
-│   ├── features/           # Cucumber feature files
-│   ├── steps/             # Step definitions
-│   ├── support/           # World and hooks
-│   └── page-objects/      # Page Object Models
-├── reports/               # Test reports directory
-├── allure-results/        # Allure report data
-└── config files          # Configuration files
+│   ├── features/         # Cucumber feature files
+│   ├── steps/            # Step definitions (TypeScript)
+│   ├── support/          # World, hooks, helpers, environment info (TypeScript), report generator (JS)
+│   └── page-objects/     # Page Object Models (TypeScript)
+├── reports/              # Test reports directory (JSON and HTML)
+├── cucumber.config.js    # Cucumber configuration (JavaScript)
+└── package.json          # Project scripts and dependencies
 ```
+
+---
 
 ## 🚀 Getting Started
 
@@ -42,6 +48,8 @@ git clone https://github.com/yourusername/cucumber-sign-up.git
 cd cucumber-sign-up
 npm install
 ```
+
+---
 
 ## 🎯 Running Tests
 
@@ -78,8 +86,8 @@ npm run test:parallel:chromium
 npm run test:parallel:firefox
 npm run test:parallel:webkit
 
-# Run tagged tests in parallel
-npm run test:tagged:parallel "@english" -- --parallel 4
+# Run tagged tests in parallel (example: @english)
+npm run test:tagged:parallel -- "@english"
 
 # Clean results and run parallel
 npm run test:clean:parallel
@@ -95,17 +103,27 @@ npx cucumber-js --tags "@language:english"
 npx cucumber-js --tags "@positive and not @skip"
 ```
 
+---
+
 ## 📊 Test Reports
 
-### Allure Reports
+### Multiple Cucumber HTML Reporter
 
 ```bash
-# Generate and open report
-npm run allure:serve
+# Generate the HTML report
+npm run report:generate
 
-# Clean previous results
-npm run allure:clean
+# Open the HTML report in your browser (Windows)
+npm run report:open
+
+# Generate and open the report in one step
+npm run report:generate:open
 ```
+
+- The report will be available at `reports/html/index.html`.
+- The report includes environment information (browser, OS, Node version, etc.).
+
+---
 
 ## 🏷️ Available Tags
 
@@ -115,6 +133,9 @@ npm run allure:clean
 - `@regression` - Full regression suite
 - `@smoke` - Critical path tests
 - `@skip` - Temporarily disabled tests
+- `@visual` - Visual regression tests
+
+---
 
 ## 🌟 Best Practices
 
@@ -125,6 +146,48 @@ npm run allure:clean
 - Cross-browser verification
 - Accessibility testing
 
+---
+
+## 🛠️ Troubleshooting
+
+- **No tests found:**  
+  Ensure your feature files and step definitions are in the correct folders and your tags match.
+- **Report not generated:**  
+  Make sure `reports/` exists and your test run produced a JSON report.
+- **Environment info missing:**  
+  Update `src/support/environment-info.ts` and ensure it is imported in both your hooks and report generator.
+- **Windows script issues:**  
+  Use double quotes (`"`) for tags in npm scripts, or remove quotes for simple tags.
+
+---
+
+## 🤖 Continuous Integration
+
+To automate tests and upload reports, add a workflow like:
+
+```yaml
+# .github/workflows/ci.yml
+name: E2E Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+      - run: npm run report:generate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: reports/html
+```
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -133,6 +196,16 @@ npm run allure:clean
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+---
+
 ## 📝 License
 
 This project is licensed under the MIT License.
+
+---
+
+## 💡 Tips
+
+- To add environment info to your reports, update `src/support/environment-info.ts` and `src/support/generate-report.js`.
+- For custom tags or new test types, simply add them to your `.feature` files and reference them in your scripts.
+- For more advanced reporting, see the [multiple-cucumber-html-reporter documentation](https://www.npmjs.com/package/multiple-cucumber-html-reporter).
