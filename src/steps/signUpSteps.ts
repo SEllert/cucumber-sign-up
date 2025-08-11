@@ -47,3 +47,4 @@ Then('the user should see their name {string} on the petition page', async funct
     await expect(nameLocator).toBeVisible();
     await this.captureScreenshot('petition-signed');
 });
+
