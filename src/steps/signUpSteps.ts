@@ -48,3 +48,22 @@ Then('the user should see their name {string} on the petition page', async funct
     await this.captureScreenshot('petition-signed');
 });
 
+Then('the user should see their name {string} on the petition page visually', async function (this: CustomWorld, expectedName: string) {
+  console.log(`[test] visual step start for: ${expectedName}`);
+  const signUp = ensureSignUpPage(this);
+
+  // debug: ensure locator exists
+  console.log('[test] petitionNameLocator selector:', signUp.petitionNameLocator && (await signUp.petitionNameLocator.evaluate((el: any) => el.outerHTML).catch(() => 'not-evaluatable')));
+
+  // wait/assert text then run visual assertion
+  await signUp.petitionNameLocator.waitFor({ state: 'visible', timeout: 15000 });
+  await expect(signUp.petitionNameLocator).toHaveText(expectedName, { timeout: 15000 });
+
+  console.log('[test] about to call assertNameVisual');
+  await signUp.assertNameVisual(expectedName);
+  console.log('[test] assertNameVisual returned');
+
+  // attach current image for visibility in report
+  const img = await signUp.petitionNameLocator.screenshot();
+  if (this.attach) this.attach(img, 'image/png');
+});

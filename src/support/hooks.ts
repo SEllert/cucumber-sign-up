@@ -1,5 +1,7 @@
-import { Before, After, BeforeAll } from '@cucumber/cucumber';
+import { Before, After, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
 import { CustomWorld } from './world';
+
+setDefaultTimeout(60 * 1000); // 60s for slow steps
 
 // Log the test environment before all scenarios
 BeforeAll(function () {
