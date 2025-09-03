@@ -6,6 +6,8 @@ import type { Page, Locator } from 'playwright';
 
 export type CompareResult = {
   passed: boolean;
+  baselinePath?: string;
+  currentPath?: string;
   diffPath?: string;
   baselineCreated?: boolean;
   updatedBaseline?: boolean;
@@ -77,7 +79,6 @@ export class VisualRegression {
     };
   }
 
-  // Compare a screenshot buffer to baseline
   async compareBuffer(buf: Buffer, rawName: string): Promise<CompareResult> {
     const { baseline, current, diff, safeName } = this.makePaths(rawName);
 
@@ -95,7 +96,7 @@ export class VisualRegression {
         this.writePng(currentPng, baseline);
         const baselineExistsAfter = fs.existsSync(baseline);
         console.log(`[visual] wrote baseline: ${baseline} (exists after write: ${baselineExistsAfter})`);
-        return { passed: true, baselineCreated: !baselineExistsBefore, updatedBaseline: this.update };
+        return { passed: true, baselinePath: baseline, currentPath: undefined, baselineCreated: true, updatedBaseline: this.update };
       } catch (err) {
         console.error(`[visual] failed to write baseline ${baseline}:`, err);
         throw err;
@@ -130,7 +131,7 @@ export class VisualRegression {
         this.writePng(currCanvas, current);
         this.writePng(diffPng, diff);
         console.log(`[visual] mismatch: wrote current -> ${current}, diff -> ${diff}`);
-        return { passed: false, diffPath: diff, diffPixels };
+        return { passed: false, baselinePath: baseline, currentPath: current, diffPath: diff, diffPixels };
       } catch (err) {
         console.error('[visual] failed writing current/diff images:', err);
         throw err;
@@ -138,7 +139,7 @@ export class VisualRegression {
     }
 
     console.log('[visual] images matched within allowedDiffRatio');
-    return { passed: true };
+    return { passed: true, baselinePath: baseline };
   }
 
   // Capture full page and compare

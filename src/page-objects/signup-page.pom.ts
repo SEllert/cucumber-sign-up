@@ -1,6 +1,6 @@
-import type { Page, Locator } from "playwright";
-import { visualRegression } from "../support/visual-regression";
-import { expect } from "@playwright/test";
+import { visualRegression, CompareResult } from '../support/visual-regression';
+import { expect } from '@playwright/test';
+import type { Page, Locator } from 'playwright';
 
 export class SignUpPage {
   readonly page: Page;
@@ -23,42 +23,27 @@ export class SignUpPage {
     await this.page.goto("https://gleeful-smakager-dc1a05.netlify.app/");
   }
 
-  // capture full page baseline/compare
-  async assertVisualSnapshot(name: string) {
-    const result = await visualRegression.comparePage(
-      this.page,
-      `signup-${name}`,
-      { fullPage: true }
-    );
-    if (!result.passed) {
-      // You can throw to fail the step, or attach links to diff in report
-      throw new Error(`Visual mismatch for ${name}. Diff: ${result.diffPath}`);
-    }
-  }
-
   // capture just the name element
-  async assertNameVisual(expectedName: string) {
-    console.log(`[visual] assertNameVisual start for: ${expectedName}`);
+  async assertNameVisual(expectedName: string): Promise<CompareResult> {
     await this.petitionNameLocator.waitFor({ state: "visible", timeout: 15000 });
     await expect(this.petitionNameLocator).toHaveText(expectedName, {
       timeout: 15000,
     });
 
     const safe = this.safeNameForFile(expectedName);
-    console.log(`[visual] taking screenshot for safe name: ${safe}`);
     const buf = await this.petitionNameLocator.screenshot();
-    console.log("[visual] screenshot taken, size:", buf.length);
-
     const result = await visualRegression.compareBuffer(buf, `signup-name-${safe}`);
-    console.log("[visual] compare result:", result);
+    return result;
+  }
 
-    if (!result.passed) {
-      console.error("[visual] mismatch, diffPath:", result.diffPath);
-      throw new Error(
-        `Visual mismatch for "${expectedName}". Diff: ${result.diffPath || "none"}`
-      );
-    }
-    console.log("[visual] visual match OK");
+  // capture full page baseline/compare
+  async assertVisualSnapshot(name: string, options?: { fullPage?: boolean }): Promise<CompareResult> {
+    const result = await visualRegression.comparePage(
+      this.page,
+      name,
+      { fullPage: !!options?.fullPage }
+    );
+    return result;
   }
 
   /**
