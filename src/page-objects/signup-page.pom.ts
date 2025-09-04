@@ -1,6 +1,7 @@
 import { visualRegression, CompareResult } from '../support/visual-regression';
 import { expect } from '@playwright/test';
 import type { Page, Locator } from 'playwright';
+import { stabilizePage } from '../support/visual-helpers';
 
 export class SignUpPage {
   readonly page: Page;
@@ -25,6 +26,7 @@ export class SignUpPage {
 
   // capture just the name element
   async assertNameVisual(expectedName: string): Promise<CompareResult> {
+    await stabilizePage(this.page);
     await this.petitionNameLocator.waitFor({ state: "visible", timeout: 15000 });
     await expect(this.petitionNameLocator).toHaveText(expectedName, {
       timeout: 15000,

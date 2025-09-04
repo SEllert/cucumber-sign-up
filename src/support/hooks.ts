@@ -1,5 +1,5 @@
 import { Before, After, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
-import { CustomWorld } from './world';
+import type { CustomWorld } from './world';
 
 setDefaultTimeout(60 * 1000); // 60s for slow steps
 
@@ -23,4 +23,9 @@ After(async function (this: CustomWorld, { pickle, result }) {
   } catch (error) {
     console.error('Error closing browser:', error);
   }
+});
+
+Before(function (this: CustomWorld, { pickle }) {
+  // store scenario (pickle) name for snapshot naming
+  this.currentScenarioName = pickle?.name?.replace(/\s+/g, '_') || 'unknown_scenario';
 });

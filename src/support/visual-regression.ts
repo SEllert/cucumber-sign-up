@@ -62,15 +62,14 @@ export class VisualRegression {
   }
 
   private browserPrefix() {
-    // read env var or default; sanitize to filesystem-safe chars
-    const b = (process.env.BROWSER || 'chromium').toString().toLowerCase();
-    return b.replace(/[^a-z0-9-_]/g, '');
+    return (process.env.BROWSER || 'chromium').toLowerCase().replace(/[^a-z0-9-_]/g, '');
   }
 
-  private makePaths(rawName: string) {
+  private makePaths(rawName: string, scenarioName?: string, viewport?: string) {
     const name = this.safeName(rawName);
+    const scenario = scenarioName ? this.safeName(scenarioName) : 'unknown';
     const browser = this.browserPrefix();
-    const baseName = `${browser}__${name}`;
+    const baseName = `${browser}__${scenario}__${name}${viewport ? `__${viewport}` : ''}`;
     return {
       baseline: path.join(this.baselineDir, `${baseName}.png`),
       current: path.join(this.diffDir, `${baseName}.current.png`),

@@ -7,6 +7,8 @@ export class CustomWorld extends World {
   context?: BrowserContext;
   page?: Page;
   signUpPage?: SignUpPage;
+  currentScenarioName?: string;
+  exampleIndex?: number; // if you want to track example row
 
   async initBrowser() {
     const browserName = (process.env.BROWSER || 'chromium').toLowerCase();
