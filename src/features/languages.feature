@@ -3,7 +3,7 @@ Feature: User petition success: Languages
   This feature covers the petition signup process for users.
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
-  @language:icelandic @positive @skip @regression 
+  @language:icelandic @positive @skip @regression  @visual
   Scenario: Petition accepts Icelandic names with special characters
    This scenario tests that a user can sign a petition using Icelandic names.
    It verifies that the name appears correctly on the petition page after signup.
@@ -12,6 +12,7 @@ Feature: User petition success: Languages
     When the user provides their full name "<fullName>"
     And the user submits the petition
     Then the user should see their name "<fullName>" on the petition page
+    Then the user should see their name "<fullName>" on the petition page visually
 
     Examples:
       | fullName                           |
@@ -26,7 +27,7 @@ Feature: User petition success: Languages
       | Ásta Ragnhildur Guðbjörnsdóttir    |
       | Kristín Þóra Þórðardóttir          |
 
-  @language:english @positive @smoke 
+  @language:english @positive @smoke @visual
   Scenario: Petition accepts English
    This scenario tests that a user can sign a petition using English names.
    It verifies that the name appears correctly on the petition page after signup.
@@ -35,6 +36,7 @@ Feature: User petition success: Languages
     When the user provides their full name "<fullName>"
     And the user submits the petition
     Then the user should see their name "<fullName>" on the petition page
+    Then the user should see their name "<fullName>" on the petition page visually
 
 # Copilot Data: 
 Examples:
@@ -50,7 +52,7 @@ Examples:
   | Ava Lewis        |
   | Henry Young      |
 
-  @language:mandrin @positive @regression
+  @language:mandrin @positive @regression @visual
   Scenario: Petition accepts Mandarin
    This scenario tests that a user can sign a petition using Mandarin names.
    It verifies that the name appears correctly on the petition page after signup.
@@ -59,6 +61,7 @@ Examples:
     When the user provides their full name "<fullName>"
     And the user submits the petition
     Then the user should see their name "<fullName>" on the petition page
+    Then the user should see their name "<fullName>" on the petition page visually
 
 # Chatpilor:  get me example of 10 Mandarin name so that the entire list has every font possible in the Mandarin language. There should be very long names and very short names
 Examples:
@@ -74,7 +77,7 @@ Examples:
   | 东方不败              |  // Fictional name, dramatic flair, 4 characters
   | 夏侯惇                |  // Ancient warrior name, compound surname
 
-@language:russian @positive @regression
+@language:russian @positive @regression @visual
 Scenario: Petition accepts Russian names
   This scenario tests that a user can sign a petition using Russian names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -83,6 +86,7 @@ Scenario: Petition accepts Russian names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -97,7 +101,7 @@ Scenario: Petition accepts Russian names
     | Владимир Новиков        |
     | Наталья Федорова        |
 
-@language:hindi @positive @regression
+@language:hindi @positive @regression @visual
 Scenario: Petition accepts Hindi names
   This scenario tests that a user can sign a petition using Hindi names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -106,6 +110,7 @@ Scenario: Petition accepts Hindi names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -120,7 +125,7 @@ Scenario: Petition accepts Hindi names
     | करण मेहरा              |
     | काव्या जोशी            |
 
-@language:french @positive @regression
+@language:french @positive @regression @visual
 Scenario: Petition accepts French names
   This scenario tests that a user can sign a petition using French names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -129,6 +134,7 @@ Scenario: Petition accepts French names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -143,7 +149,7 @@ Scenario: Petition accepts French names
     | Louis Mercier           |
     | Léa Faure               |
 
-@language:danish @positive @regression
+@language:danish @positive @regression @visual
 Scenario: Petition accepts Danish names
   This scenario tests that a user can sign a petition using Danish names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -152,6 +158,7 @@ Scenario: Petition accepts Danish names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -166,7 +173,7 @@ Scenario: Petition accepts Danish names
     | Victor Møller           |
     | Anna Larsen             |
 
-@language:spanish @positive @regression
+@language:spanish @positive @regression @visual
 Scenario: Petition accepts Spanish names
   This scenario tests that a user can sign a petition using Spanish names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -175,6 +182,7 @@ Scenario: Petition accepts Spanish names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -189,7 +197,7 @@ Scenario: Petition accepts Spanish names
     | Diego Ruiz              |
     | Paula Díaz              |
 
-@language:polish @positive @regression
+@language:polish @positive @regression @visual
 Scenario: Petition accepts Polish names
   This scenario tests that a user can sign a petition using Polish names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -198,6 +206,7 @@ Scenario: Petition accepts Polish names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -212,7 +221,7 @@ Scenario: Petition accepts Polish names
     | Krzysztof Woźniak       |
     | Ewa Dąbrowska           |
 
-@language:croatian @positive @regression
+@language:croatian @positive @regression @visual
 Scenario: Petition accepts Croatian names
   This scenario tests that a user can sign a petition using Croatian names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -221,6 +230,7 @@ Scenario: Petition accepts Croatian names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |
@@ -235,7 +245,7 @@ Scenario: Petition accepts Croatian names
     | Tomislav Pavlović       |
     | Martina Radić           |
 
-@language:italian @positive @regression
+@language:italian @positive @regression @visual
 Scenario: Petition accepts Italian names
   This scenario tests that a user can sign a petition using Italian names.
   It verifies that the name appears correctly on the petition page after signup.
@@ -244,6 +254,7 @@ Scenario: Petition accepts Italian names
   When the user provides their full name "<fullName>"
   And the user submits the petition
   Then the user should see their name "<fullName>" on the petition page
+  Then the user should see their name "<fullName>" on the petition page visually
 
   Examples:
     | fullName                |

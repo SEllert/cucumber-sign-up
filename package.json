@@ -19,7 +19,10 @@
     "test:visual:update": "cross-env UPDATE_SNAPSHOTS=true npx cucumber-js --tags '@visual' --config cucumber.config.js",
     "report:generate": "node src/support/generate-report.js",
     "report:open": "start \"\" \"reports/html/index.html\"",
-    "report:generate:open": "npm run report:generate && npm run report:open"
+    "report:generate:open": "npm run report:generate && npm run report:open",
+    "test:update": "cross-env HEADLESS=false UPDATE_SNAPSHOTS=1 npx cucumber-js --config cucumber.config.js && npm run report:generate:open",
+    "test:headed": "cross-env HEADLESS=false SLOWMO=50 BROWSER=chromium npx cucumber-js --config cucumber.config.js && npm run report:generate:open",
+    "test:headed:devtools": "cross-env HEADLESS=false DEVTOOLS=true SLOWMO=50 BROWSER=chromium npx cucumber-js --config cucumber.config.js && npm run report:generate:open"
   },
   "keywords": [
     "playwright",
@@ -36,10 +39,13 @@
     "@playwright/test": "^1.54.1",
     "@types/git-rev-sync": "^2.0.2",
     "@types/node": "^24.0.15",
+    "@types/pngjs": "^6.0.5",
     "chokidar-cli": "^3.0.0",
     "cross-env": "^10.0.0",
     "git-rev-sync": "^3.0.2",
     "multiple-cucumber-html-reporter": "^3.9.3",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
     "ts-node": "^10.9.2"
   }
 }
