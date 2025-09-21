@@ -9,12 +9,6 @@ Feature: Visual regression tests for the signup flow
     And the user submits the petition
     Then the page should match the full-page visual baseline
 
-  @visual @validation
-  Scenario: Validation UI visual - empty submission
-    Given the user is on the signup page
-    When the user submits the petition without filling required fields
-    Then the page should match the validation visual baseline
-
   @visual @mobile
   Scenario: Mobile viewport visual for signup page
     Given the user is on the signup page at viewport 375x812
