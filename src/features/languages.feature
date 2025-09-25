@@ -4,7 +4,7 @@ Feature: User petition success: Languages
   It verifies that users can successfully sign a petition, and see their names on the petition page.
 
   @language:icelandic @positive @skip @regression  @visual
-  Scenario: Petition accepts Icelandic names with special characters
+  Scenario Outline: Petition accepts Icelandic names with special characters
    This scenario tests that a user can sign a petition using Icelandic names.
    It verifies that the name appears correctly on the petition page after signup.
 
@@ -28,7 +28,7 @@ Feature: User petition success: Languages
       | Kristín Þóra Þórðardóttir          |
 
   @language:english @positive @smoke @visual
-  Scenario: Petition accepts English
+  Scenario Outline: Petition accepts English
    This scenario tests that a user can sign a petition using English names.
    It verifies that the name appears correctly on the petition page after signup.
 
@@ -53,7 +53,7 @@ Examples:
   | Henry Young      |
 
   @language:mandrin @positive @regression @visual
-  Scenario: Petition accepts Mandarin
+  Scenario Outline: Petition accepts Mandarin
    This scenario tests that a user can sign a petition using Mandarin names.
    It verifies that the name appears correctly on the petition page after signup.
 
@@ -78,7 +78,7 @@ Examples:
   | 夏侯惇                |  // Ancient warrior name, compound surname
 
 @language:russian @positive @regression @visual
-Scenario: Petition accepts Russian names
+Scenario Outline: Petition accepts Russian names
   This scenario tests that a user can sign a petition using Russian names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -102,7 +102,7 @@ Scenario: Petition accepts Russian names
     | Наталья Федорова        |
 
 @language:hindi @positive @regression @visual
-Scenario: Petition accepts Hindi names
+Scenario Outline: Petition accepts Hindi names
   This scenario tests that a user can sign a petition using Hindi names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -126,7 +126,7 @@ Scenario: Petition accepts Hindi names
     | काव्या जोशी            |
 
 @language:french @positive @regression @visual
-Scenario: Petition accepts French names
+Scenario Outline: Petition accepts French names
   This scenario tests that a user can sign a petition using French names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -150,7 +150,7 @@ Scenario: Petition accepts French names
     | Léa Faure               |
 
 @language:danish @positive @regression @visual
-Scenario: Petition accepts Danish names
+Scenario Outline: Petition accepts Danish names
   This scenario tests that a user can sign a petition using Danish names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -174,7 +174,7 @@ Scenario: Petition accepts Danish names
     | Anna Larsen             |
 
 @language:spanish @positive @regression @visual
-Scenario: Petition accepts Spanish names
+Scenario Outline: Petition accepts Spanish names
   This scenario tests that a user can sign a petition using Spanish names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -198,7 +198,7 @@ Scenario: Petition accepts Spanish names
     | Paula Díaz              |
 
 @language:polish @positive @regression @visual
-Scenario: Petition accepts Polish names
+Scenario Outline: Petition accepts Polish names
   This scenario tests that a user can sign a petition using Polish names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -222,7 +222,7 @@ Scenario: Petition accepts Polish names
     | Ewa Dąbrowska           |
 
 @language:croatian @positive @regression @visual
-Scenario: Petition accepts Croatian names
+Scenario Outline: Petition accepts Croatian names
   This scenario tests that a user can sign a petition using Croatian names.
   It verifies that the name appears correctly on the petition page after signup.
 
@@ -246,7 +246,7 @@ Scenario: Petition accepts Croatian names
     | Martina Radić           |
 
 @language:italian @positive @regression @visual
-Scenario: Petition accepts Italian names
+Scenario Outline: Petition accepts Italian names
   This scenario tests that a user can sign a petition using Italian names.
   It verifies that the name appears correctly on the petition page after signup.
 
