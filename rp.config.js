@@ -1,3 +1,5 @@
+const environmentInfo = require('./src/support/environment-info');
+
 module.exports = {
     apiKey: "cucumber-sign-up_zLBgSvAbQn6j5EKXaONiQ9CgesZBz4X8ci3-FapAre9jAPnLI6q2iOJEM5YLRF4o",
     endpoint: "http://localhost:8080/api/v1",
@@ -11,11 +13,35 @@ module.exports = {
         },
         {
             key: "browser", 
-            value: "chromium"
+            value: environmentInfo['browser.name']
         },
         {
             key: "environment",
             value: "local"
+        },
+        {
+            key: "os.platform",
+            value: environmentInfo['os.platform']
+        },
+        {
+            key: "os.release",
+            value: environmentInfo['os.release']
+        },
+        {
+            key: "node.version",
+            value: environmentInfo['node.version']
+        },
+        {
+            key: "git.branch",
+            value: environmentInfo['git.branch']
+        },
+        {
+            key: "git.commit",
+            value: environmentInfo['git.commit']
+        },
+        {
+            key: "run.user",
+            value: environmentInfo['run.user']
         }
     ],
     mode: "DEFAULT",
