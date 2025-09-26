@@ -4,3 +4,14 @@ allure-results/
 allure-report/
 playwright-report/
 test-results/
+
+# Cucumber Reports (explicit)
+cucumber-report.html
+cucumber-report.json
+**/cucumber-report.html
+**/cucumber-report.json
+
+# Other test artifacts
+*.log
+coverage/
+.nyc_output/
