@@ -1,3 +1,5 @@
+// ReportPortal configuration with dynamic environment attributes
+// Integrates system information from environment-info.js for better traceability
 const environmentInfo = require('./src/support/environment-info');
 
 module.exports = {
@@ -17,7 +19,7 @@ module.exports = {
         },
         {
             key: "environment",
-            value: "local"
+            value: process.env.TEST_ENV || "local"
         },
         {
             key: "os.platform",
