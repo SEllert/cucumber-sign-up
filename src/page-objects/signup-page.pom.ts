@@ -55,7 +55,7 @@ export class SignUpPage {
   getNameInPetitionContainer(fullName: string): Locator {
     const container = this.page.locator("div.max-h-96.overflow-y-auto");
     return container.locator(
-      `span.text-gray-900.font-medium.text-lg:has-text(\"${fullName}\")`
+      `span.text-gray-900.font-medium.text-lg:has-text("${fullName}")`
     );
   }
 
