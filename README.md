@@ -24,7 +24,7 @@ cucumber-sign-up/
 ├── src/
 │   ├── features/         # Cucumber feature files
 │   ├── steps/            # Step definitions (TypeScript)
-│   ├── support/          # World, hooks, helpers, environment info (TypeScript), report generator (JS)
+│   ├── support/          # World, hooks, helpers (TS), environment info & report generator (JS)
 │   └── page-objects/     # Page Object Models (TypeScript)
 ├── reports/              # Test reports directory (JSON and HTML)
 ├── cucumber.config.js    # Cucumber configuration (JavaScript)
@@ -88,9 +88,6 @@ npm run test:parallel:webkit
 
 # Run tagged tests in parallel (example: @english)
 npm run test:tagged:parallel -- "@english"
-
-# Clean results and run parallel
-npm run test:clean:parallel
 ```
 
 ### Running with Tags
@@ -101,6 +98,26 @@ npx cucumber-js --tags "@language:english"
 
 # Run positive tests (excluding skipped)
 npx cucumber-js --tags "@positive and not @skip"
+```
+
+### Visual Testing
+
+```bash
+# Run visual regression tests
+npm run test:visual
+
+# Update visual baselines
+npm run test:visual:update
+```
+
+### Debugging
+
+```bash
+# Run in headed mode (visible browser)
+npm run test:headed
+
+# Run in headed mode with DevTools open
+npm run test:headed:devtools
 ```
 
 ---
@@ -129,11 +146,24 @@ npm run report:generate:open
 
 - `@language:icelandic` - Tests with Icelandic names
 - `@language:english` - Tests with English names
+- `@language:mandrin` - Tests with Mandarin names
+- `@language:russian` - Tests with Russian names
+- `@language:hindi` - Tests with Hindi names
+- `@language:french` - Tests with French names
+- `@language:danish` - Tests with Danish names
+- `@language:spanish` - Tests with Spanish names
+- `@language:polish` - Tests with Polish names
+- `@language:croatian` - Tests with Croatian names
+- `@language:italian` - Tests with Italian names
 - `@positive` - Happy path scenarios
 - `@regression` - Full regression suite
 - `@smoke` - Critical path tests
 - `@skip` - Temporarily disabled tests
 - `@visual` - Visual regression tests
+- `@fullpage` - Full page visual tests
+- `@mobile` - Mobile viewport tests
+- `@sanity` - Sanity checks
+- `@petition` - Petition feature tests
 
 ---
 
@@ -155,7 +185,7 @@ npm run report:generate:open
 - **Report not generated:**  
   Make sure `reports/` exists and your test run produced a JSON report.
 - **Environment info missing:**  
-  Update `src/support/environment-info.ts` and ensure it is imported in both your hooks and report generator.
+  Update `src/support/environment-info.js` and ensure it is imported in both your hooks and report generator.
 - **Windows script issues:**  
   Use double quotes (`"`) for tags in npm scripts, or remove quotes for simple tags.
 
@@ -206,6 +236,6 @@ This project is licensed under the MIT License.
 
 ## 💡 Tips
 
-- To add environment info to your reports, update `src/support/environment-info.ts` and `src/support/generate-report.js`.
+- To add environment info to your reports, update `src/support/environment-info.js` and `src/support/generate-report.js`.
 - For custom tags or new test types, simply add them to your `.feature` files and reference them in your scripts.
 - For more advanced reporting, see the [multiple-cucumber-html-reporter documentation](https://www.npmjs.com/package/multiple-cucumber-html-reporter).
